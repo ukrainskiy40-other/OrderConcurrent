@@ -28,13 +28,13 @@ public class OrderService {
     }
 
     /**
-     * Верент все order отсортирование в обратном порядке добавления
+     * Вернет все order
      * @return List<Order>
      */
     public List<Order> findAllOrder() {
         try {
             readLock.lock();
-            return orders.values().stream().sorted((o1, o2) -> Long.compare(o2.getId(), o1.getId())).collect(Collectors.toList());
+            return new ArrayList<>(orders.values());
         } finally {
             readLock.unlock();
         }
